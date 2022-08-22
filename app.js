@@ -17,14 +17,23 @@ window.addEventListener('load', ()=> {
                     return response.json();
                 })
                 .then(data => {
-                    console.log(data);
-                    const { temp, conditions } = data.currentConditions;
+                    const { temp, conditions, icon } = data.currentConditions;
                     //Set DOM Elements from the API
                     temperatureDegree.textContent = temp;
                     temperatureDescription.textContent = conditions;
+                    locationTimezone.textContent = data.timezone;
+                    //Set Icon
+                    setIcons(icon, document.querySelector(".icon"));
                 });
         });
     } else {
         h1.textContent = "Please allow location services";
+    }
+
+    function setIcons(icon, iconID) {
+        const skycons = new Skycons({color: "white"});
+        const currentIcon = icon.replace(/-/g, "_").toUpperCase();
+        skycons.play();
+        return skycons.set(iconID, Skycons[currentIcon]);
     }
 });
