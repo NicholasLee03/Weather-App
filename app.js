@@ -31,7 +31,7 @@ window.addEventListener('load', ()=> {
                     let celsius = (temp - 32) * (5 / 9);
                     //Change temperature to Celsius/Farenheit
                     temperatureSection.addEventListener('click', () =>{
-                        if (temperatureSpan.textContent == "F") {
+                        if (temperatureSpan.textContent === "F") {
                             temperatureSpan.textContent = "C";
                             temperatureDegree.textContent = Math.floor(celsius);
                         } else {
